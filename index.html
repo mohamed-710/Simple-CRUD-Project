@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <title>CRUD</title>
+</head>
+<body>
+    <div class="container shadow-lg rounded-5 w-75 py-5 px-3 mt-5">
+        <h1 class="text-center mb-4">CRUD Project</h1>
+        <form id="submit-product">
+            <div class="mb-3">
+                <label for="product_name" class="form-label"></label>
+                <input type="text" class="form-control" id="product_name" placeholder="product_name">
+            </div>
+            <div class="mb-3">
+                <label for="product_price" class="form-label"></label>
+                <input type="text" class="form-control" id="product_price" placeholder="product_price">
+            </div>
+
+            <div class="mb-3">
+                <label for="product_category" class="form-label"></label>
+                <input type="text" class="form-control" id="product_category" placeholder="product_category">
+            </div>
+            <div class="mb-3">
+                <label for="product_count" class="form-label"></label>
+                <input type="number" class="form-control" id="product_count" placeholder="product_count">
+            </div>
+
+            <div class="mb-3">
+                <label for="product_desc" class="form-label"></label>
+                <textarea class="form-control" id="product_desc" rows="3">
+        </textarea>
+            </div>
+            <div class="button-container">
+            <button class="btn btn-primary" id="add-ptn">Add product</button>
+            <button type="button" onclick="deleteAll()" class="btn btn-primary d-none" id="clear-btn">Delete All</button>
+            </div>
+        </form>
+    </div>
+   
+    <div class="w-75 mx-auto mt-5 my-5 d-none" id="table-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>index</th>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>category</th>
+                    <th>Description</th>
+                    <th>Upadte</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+    <div class="w-75 mx-auto mt-5 my-5 d-none" id="W-msg">
+        <div class="alert alert-warning" role="alert">
+            There are no products available yet!
+        </div>
+    </div>
+
+
+
+    <script src="js/test.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
