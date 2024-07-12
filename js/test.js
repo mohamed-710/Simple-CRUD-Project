@@ -18,34 +18,58 @@ function showData() {
         productlist.classList.add("d-block");
         Warning_msg.classList.add("d-none");
         Warning_msg.classList.remove("d-block");
-
-        let table = '';
+        tableBody.innerHTML = '';
         for (let i = 0; i < products.length; i++) {
-            table +=
-                `
-              <tr>
-                    <th>${i + 1}</th>
-                    <td>${products[i].name}</td>
-                    <td>${products[i].price}</td>
-                    <td>${products[i].cat}</td>
-                    <td>${products[i].desc}</td>
-                    <td>
-                        <button onclick="updateData(${i})" class="btn btn-outline-success">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="deleteData( ${i})" class="btn  btn-outline-danger">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-           `;
+
+            const tr = document.createElement('tr');
+
+            const th = document.createElement('th');
+            th.textContent = i + 1;
+            tr.appendChild(th);
+
+
+            const tdName = document.createElement('td');
+            tdName.textContent = products[i].name;
+            tr.appendChild(tdName);
+
+            const tdPrice = document.createElement('td');
+            tdPrice.textContent = products[i].price;
+            tr.appendChild(tdPrice);
+
+            const tdCat = document.createElement('td');
+            tdCat.textContent = products[i].cat;
+            tr.appendChild(tdCat);
+
+            const tdDesc = document.createElement('td');
+            tdDesc.textContent = products[i].desc;
+            tr.appendChild(tdDesc);
+
+
+            const tdUpdate = document.createElement('td');
+            const updateButton = document.createElement('button');
+            updateButton.className = 'btn btn-outline-success';
+            updateButton.setAttribute('onclick', `updateData(${i})`);
+            const updateIcon = document.createElement('i');
+            updateIcon.className = 'fa-solid fa-pen-to-square';
+            updateButton.appendChild(updateIcon);
+            tdUpdate.appendChild(updateButton);
+            tr.appendChild(tdUpdate);
+
+
+            const tdDelete = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-outline-danger';
+            deleteButton.setAttribute('onclick', `deleteData(${i})`);
+            const deleteIcon = document.createElement('i');
+            deleteIcon.className = 'fa-solid fa-trash';
+            deleteButton.appendChild(deleteIcon);
+            tdDelete.appendChild(deleteButton);
+            tr.appendChild(tdDelete);
+
+            tableBody.appendChild(tr);
         }
-        tableBody.innerHTML = table;
         buttondelete.classList.remove('d-none');
         updateDeleteButtonText();
-
     }
     else {
         Warning_msg.classList.remove("d-none");
@@ -116,16 +140,12 @@ function clearData() {
     productDescription.value = '';
     productCount.value = '';
 }
-
-
-
-
 function deleteData(i) {
 
-            products.splice(i, 1);
-            localStorage.product = JSON.stringify(products);
-            showData();
-        }
+    products.splice(i, 1);
+    localStorage.product = JSON.stringify(products);
+    showData();
+}
 function deleteAll() {
     localStorage.clear();
     products.splice(0);
@@ -149,5 +169,62 @@ function updateData(i) {
         behavior: "smooth"
     })
 }
+
+function searchData(value) {
+    tableBody.innerHTML = '';
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].name.toLowerCase().includes(value)) {
+
+
+            const tr = document.createElement('tr');
+
+            const th = document.createElement('th');
+            th.textContent = i + 1;
+            tr.appendChild(th);
+
+
+            const tdName = document.createElement('td');
+            tdName.textContent = products[i].name;
+            tr.appendChild(tdName);
+
+            const tdPrice = document.createElement('td');
+            tdPrice.textContent = products[i].price;
+            tr.appendChild(tdPrice);
+
+            const tdCat = document.createElement('td');
+            tdCat.textContent = products[i].cat;
+            tr.appendChild(tdCat);
+
+            const tdDesc = document.createElement('td');
+            tdDesc.textContent = products[i].desc;
+            tr.appendChild(tdDesc);
+
+
+            const tdUpdate = document.createElement('td');
+            const updateButton = document.createElement('button');
+            updateButton.className = 'btn btn-outline-success';
+            updateButton.setAttribute('onclick', `updateData(${i})`);
+            const updateIcon = document.createElement('i');
+            updateIcon.className = 'fa-solid fa-pen-to-square';
+            updateButton.appendChild(updateIcon);
+            tdUpdate.appendChild(updateButton);
+            tr.appendChild(tdUpdate);
+
+
+            const tdDelete = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-outline-danger';
+            deleteButton.setAttribute('onclick', `deleteData(${i})`);
+            const deleteIcon = document.createElement('i');
+            deleteIcon.className = 'fa-solid fa-trash';
+            deleteButton.appendChild(deleteIcon);
+            tdDelete.appendChild(deleteButton);
+            tr.appendChild(tdDelete);
+
+            tableBody.appendChild(tr);
+        }
+    }
+}
+
 add_to_storage();
 showData();
