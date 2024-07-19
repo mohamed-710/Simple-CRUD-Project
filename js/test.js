@@ -72,7 +72,7 @@ class UserInput {
         this.showData()
     }
     updateDeleteButtonText() {
-        buttondelete.textContent = `this.Delete All (${products.length})`;
+        buttondelete.textContent = `Delete All (${products.length})`;
     }
     updateData(i) {
         productName.value = products[i].name;
